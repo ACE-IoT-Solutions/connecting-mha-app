@@ -111,7 +111,7 @@ export const ThermostatGauge = ({
     if (drStatus === "curtailed" || drStatus === "heightened") {
       offset = offset + 1;
     }
-    console.warn("setPoint", getLocalTemperature(setPoint));
+
     if (type === "heat") {
       calculatedOffset = toNumber(getLocalTemperature(setPoint)) - offset;
     } else if (type === "cool") {
