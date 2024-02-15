@@ -29,8 +29,6 @@ type ThermostatGaugeProps = {
   setPoint: number;
   mode?: ThermostatMode;
   drStatus: DemandResponseStatus;
-  mode?: ThermostatMode;
-  drStatus: DemandResponseStatus;
   interiorTemp: number;
   onPressWarm(): void;
   onPressCool(): void;
@@ -124,21 +122,6 @@ export const ThermostatGauge = ({
 
   return (
     // <PanGestureHandler onGestureEvent={onGesture} onHandlerStateChange={onGestureStateChange}>
-    <View style={styles.container}>
-      <View style={styles.wrapper}>
-        {label && <Text style={styles.label}>{label}</Text>}
-        <Text style={[styles.indoorTemp, pendingActivity && styles.activeSetpoint, disabled && styles.disabled]}>
-          {getLocalTemperature(interiorTemp)}&deg;
-        </Text>
-        {mode === "auto" ? (
-          <View style={{ flexDirection: "row" }}>
-            <View style={styles.container}>
-              <Text style={[styles.setpointLabel, disabled && styles.disabled]}>Cool</Text>
-              <Text style={[styles.setpoint, disabled && styles.disabled]}>
-                {calculateOffset(setPoint, "cool", drStatus)}&deg;
-              </Text>
-            </View>
-            <View style={styles.spacer} />
     <View style={styles.container}>
       <View style={styles.wrapper}>
         {label && <Text style={styles.label}>{label}</Text>}
