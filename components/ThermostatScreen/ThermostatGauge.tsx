@@ -29,6 +29,8 @@ type ThermostatGaugeProps = {
   setPoint: number;
   mode?: ThermostatMode;
   drStatus: DemandResponseStatus;
+  mode?: ThermostatMode;
+  drStatus: DemandResponseStatus;
   interiorTemp: number;
   onPressWarm(): void;
   onPressCool(): void;
@@ -137,6 +139,21 @@ export const ThermostatGauge = ({
               </Text>
             </View>
             <View style={styles.spacer} />
+    <View style={styles.container}>
+      <View style={styles.wrapper}>
+        {label && <Text style={styles.label}>{label}</Text>}
+        <Text style={[styles.indoorTemp, pendingActivity && styles.activeSetpoint, disabled && styles.disabled]}>
+          {getLocalTemperature(interiorTemp)}&deg;
+        </Text>
+        {mode === "auto" ? (
+          <View style={{ flexDirection: "row" }}>
+            <View style={styles.container}>
+              <Text style={[styles.setpointLabel, disabled && styles.disabled]}>Cool</Text>
+              <Text style={[styles.setpoint, disabled && styles.disabled]}>
+                {calculateOffset(setPoint, "cool", drStatus)}&deg;
+              </Text>
+            </View>
+            <View style={styles.spacer} />
             <View style={styles.spacer} />
             <View style={styles.container}>
               <Text style={[styles.setpointLabel, disabled && styles.disabled]}>Heat</Text>
@@ -158,6 +175,7 @@ export const ThermostatGauge = ({
             disabled={disabled || setPoint <= minTemp}
             onPress={onPressCool}
           />
+          <View style={styles.spacer} />
           <View style={styles.spacer} />
           <ThermostatGaugeButton
             label="Warm"
@@ -194,10 +212,13 @@ const styles = StyleSheet.create({
   },
   label: {
     ...typography.headline3Bold,
+    marginTop: 50,
+    flex: 1,
     color: theme.text,
   },
   indoorTemp: {
     ...typography.headline1,
+    flex: 1,
     color: theme.primary,
   },
   activeSetpoint: {
@@ -229,12 +250,11 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   controls: {
-    position: "absolute",
+    flex: 1,
+    marginTop: 5,
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-around",
-    marginTop: 140,
-    width: "100%",
+    justifyContent: "space-between",
   },
   spacer: {
     width: 12,
