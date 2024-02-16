@@ -156,66 +156,68 @@ export function ThermostatScreen() {
       <>
         {data && homeConfigData && newSetpointData && (
           <SafeAreaView testID="ThermostatScreen" style={styles.container}>
-            <View
-              testID="ThermostatScreen-device-data"
-              style={[styles.content, { height: dimensions.height - 157, width: dimensions.width }]}
-            >
-              <View style={styles.outdoorTemp}>
-                <WeatherIcon testID="exteriorWeatherSvg" weather={data.exterior_weather} />
-                <Text testID="ThermostatScreen-outdoor-temp" style={styles.outdoorTempText} maxFontSizeMultiplier={3}>
-                  {getLocalTemperature(data.exterior_temperature)}&deg; Outside
-                </Text>
-              </View>
-              <View style={styles.thermostatGauge}>
-                <ThermostatGauge
-                  label="Indoor"
-                  disabled={isLoading}
-                  drStatus={data.dr_status}
-                  mode={data.mode}
-                  pendingActivity={pendingActivity}
-                  setPoint={newSetpointData.setpoint}
-                  interiorTemp={data.interior_temperature}
-                  onPressWarm={() =>
-                    isMetric
-                      ? setNewSetpoint({ setpoint: newSetpointData.setpoint + 1 })
-                      : setNewSetpoint({ setpoint: newSetpointData.setpoint + 0.56 })
-                  }
-                  onPressCool={() =>
-                    isMetric
-                      ? setNewSetpoint({ setpoint: newSetpointData.setpoint - 1 })
-                      : setNewSetpoint({ setpoint: newSetpointData.setpoint - 0.56 })
-                  }
-                  onDrag={({ direction }) => {
-                    setNewSetpoint({ setpoint: newSetpointData.setpoint + 0.2 * (direction === "up" ? 1 : -1) });
-                  }}
-                />
-                <View style={styles.updateStatus}>
-                  {isLoading && <ActivityIndicator testID="ThermostatUpdateActivityIndicator" />}
-                  {(updateError || updateDrStatusError) && (
-                    <ErrorLabel
-                      testID="ThermostatUpdateError"
-                      style={styles.errorLabel}
-                      message="Failed to update Thermostat"
+            <ScrollView style={{ flex: 1 }} refreshControl={<RefreshControl refreshing={false} onRefresh={refresh} />}>
+              <View
+                testID="ThermostatScreen-device-data"
+                style={[styles.content, { height: dimensions.height - 157, width: dimensions.width }]}
+              >
+                <View style={styles.outdoorTemp}>
+                  <WeatherIcon testID="exteriorWeatherSvg" weather={data.exterior_weather} />
+                  <Text testID="ThermostatScreen-outdoor-temp" style={styles.outdoorTempText} maxFontSizeMultiplier={3}>
+                    {getLocalTemperature(data.exterior_temperature)}&deg; Outside
+                  </Text>
+                </View>
+                <View style={styles.thermostatGauge}>
+                  <ThermostatGauge
+                    label="Indoor"
+                    disabled={isLoading}
+                    drStatus={data.dr_status}
+                    mode={data.mode}
+                    pendingActivity={pendingActivity}
+                    setPoint={newSetpointData.setpoint}
+                    interiorTemp={data.interior_temperature}
+                    onPressWarm={() =>
+                      isMetric
+                        ? setNewSetpoint({ setpoint: newSetpointData.setpoint + 1 })
+                        : setNewSetpoint({ setpoint: newSetpointData.setpoint + 0.56 })
+                    }
+                    onPressCool={() =>
+                      isMetric
+                        ? setNewSetpoint({ setpoint: newSetpointData.setpoint - 1 })
+                        : setNewSetpoint({ setpoint: newSetpointData.setpoint - 0.56 })
+                    }
+                    onDrag={({ direction }) => {
+                      setNewSetpoint({ setpoint: newSetpointData.setpoint + 0.2 * (direction === "up" ? 1 : -1) });
+                    }}
+                  />
+                  <View style={styles.updateStatus}>
+                    {isLoading && <ActivityIndicator testID="ThermostatUpdateActivityIndicator" />}
+                    {(updateError || updateDrStatusError) && (
+                      <ErrorLabel
+                        testID="ThermostatUpdateError"
+                        style={styles.errorLabel}
+                        message="Failed to update Thermostat"
+                      />
+                    )}
+                  </View>
+                </View>
+                <View>
+                  <View style={styles.picker}>
+                    <ThermostatModePicker
+                      options={thermostatModes}
+                      selectedMode={newSetpointData.mode}
+                      onChange={(mode) => setNewSetpoint({ mode })}
+                    />
+                  </View>
+                  {shouldPresentDemandResponse(data.dr_status) && (
+                    <ConditionalDemandResponse
+                      drStatus={data.dr_status}
+                      onPress={() => navigation.navigate("DemandResponseMessage", { title: demandRespondTitle })}
                     />
                   )}
                 </View>
               </View>
-              <View>
-                <View style={styles.picker}>
-                  <ThermostatModePicker
-                    options={thermostatModes}
-                    selectedMode={newSetpointData.mode}
-                    onChange={(mode) => setNewSetpoint({ mode })}
-                  />
-                </View>
-                {shouldPresentDemandResponse(data.dr_status) && (
-                  <ConditionalDemandResponse
-                    drStatus={data.dr_status}
-                    onPress={() => navigation.navigate("DemandResponseMessage", { title: demandRespondTitle })}
-                  />
-                )}
-              </View>
-            </View>
+            </ScrollView>
           </SafeAreaView>
         )}
         <OptOutModal
