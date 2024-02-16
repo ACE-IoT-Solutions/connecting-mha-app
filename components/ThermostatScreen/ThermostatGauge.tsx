@@ -124,15 +124,8 @@ export const ThermostatGauge = ({
     // <PanGestureHandler onGestureEvent={onGesture} onHandlerStateChange={onGestureStateChange}>
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        {label && (
-          <Text style={styles.label} maxFontSizeMultiplier={1.3}>
-            {label}
-          </Text>
-        )}
-        <Text
-          style={[styles.indoorTemp, pendingActivity && styles.activeSetpoint, disabled && styles.disabled]}
-          allowFontScaling={false}
-        >
+        {label && <Text style={styles.label} maxFontSizeMultiplier={1.3}>{label}</Text>}
+        <Text style={[styles.indoorTemp, pendingActivity && styles.activeSetpoint, disabled && styles.disabled]} allowFontScaling={false}>
           {getLocalTemperature(interiorTemp)}&deg;
         </Text>
         {mode === "auto" ? (
@@ -209,10 +202,13 @@ const styles = StyleSheet.create({
   },
   label: {
     ...typography.headline3Bold,
+    marginTop: 50,
+    flex: 1,
     color: theme.text,
   },
   indoorTemp: {
     ...typography.headline1,
+    flex: 1,
     color: theme.primary,
   },
   activeSetpoint: {
@@ -244,12 +240,11 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   controls: {
-    position: "absolute",
+    flex: 1,
+    marginTop: 5,
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-around",
-    marginTop: 140,
-    width: "100%",
+    justifyContent: "space-between",
   },
   spacer: {
     width: 12,
