@@ -124,8 +124,15 @@ export const ThermostatGauge = ({
     // <PanGestureHandler onGestureEvent={onGesture} onHandlerStateChange={onGestureStateChange}>
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        {label && <Text style={styles.label} maxFontSizeMultiplier={1.3}>{label}</Text>}
-        <Text style={[styles.indoorTemp, pendingActivity && styles.activeSetpoint, disabled && styles.disabled]} allowFontScaling={false}>
+        {label && (
+          <Text style={styles.label} maxFontSizeMultiplier={1.3}>
+            {label}
+          </Text>
+        )}
+        <Text
+          style={[styles.indoorTemp, pendingActivity && styles.activeSetpoint, disabled && styles.disabled]}
+          allowFontScaling={false}
+        >
           {getLocalTemperature(interiorTemp)}&deg;
         </Text>
         {mode === "auto" ? (
@@ -166,6 +173,7 @@ export const ThermostatGauge = ({
             disabled={disabled || setPoint <= minTemp}
             onPress={onPressCool}
           />
+          <View style={styles.spacer} />
           <View style={styles.spacer} />
           <ThermostatGaugeButton
             label="Warm"
