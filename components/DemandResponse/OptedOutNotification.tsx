@@ -7,7 +7,7 @@ export function OptedOutNotification() {
   return (
     <TouchableOpacity testID="OptedOutNotification" style={styles.container}>
       <AlertCircle style={styles.icon} />
-      <Text style={styles.label} maxFontSizeMultiplier={2}>
+      <Text style={styles.label} maxFontSizeMultiplier={1.6}>
         Standard operation has resumed
       </Text>
       <Text style={styles.cta}></Text>
