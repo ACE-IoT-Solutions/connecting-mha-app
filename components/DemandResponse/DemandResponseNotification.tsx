@@ -32,6 +32,8 @@ const styles = StyleSheet.create({
   label: {
     color: theme.colors.white,
     fontFamily: theme.fonts.title,
+    textAlign: "center",
+    maxWidth: "50%",
   },
   cta: {
     fontFamily: theme.fonts.title,
