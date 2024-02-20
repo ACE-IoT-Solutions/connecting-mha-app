@@ -133,7 +133,6 @@ export const ThermostatGauge = ({
           <Text
             allowFontScaling={false}
             style={[styles.indoorTemp, pendingActivity && styles.activeSetpoint, disabled && styles.disabled]}
-            allowFontScaling={false}
           >
             {getLocalTemperature(interiorTemp)}
           </Text>
