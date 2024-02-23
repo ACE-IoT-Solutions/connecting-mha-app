@@ -223,11 +223,10 @@ const styles = StyleSheet.create({
     minWidth: 118,
   },
   label: {
-    ...typography.headline3Bold,
+    ...typography.headline3,
     marginTop: 50,
     flex: 1,
     color: theme.text,
-    fontWeight: "bold",
   },
   tempContainer: {
     flex: 1,
@@ -275,11 +274,10 @@ const styles = StyleSheet.create({
     color: theme.disabledText,
   },
   setpointLabel: {
-    ...typography.headline1Bold,
+    ...typography.headline1,
     fontSize: 12,
     textTransform: "capitalize",
     color: theme.text,
-    fontWeight: "bold",
     includeFontPadding: false,
     letterSpacing: 0.08,
   },
