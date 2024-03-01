@@ -27,15 +27,11 @@ async function getApiPrefix(key: string | null): Promise<string | null> {
   }
 }
 
-export async function getApiEndpoint(isDevEnv?: boolean): Promise<string | null> {
+export async function getApiEndpoint(): Promise<string | null> {
   const selectedPrefix = await AsyncStorage.getItem(USER_API_PREFIX_KEY);
-  console.log({ selectedPrefix });
   const fallbackPrefix = "digitalOcean";
 
-  const apiEndpoint = await getApiPrefix(
-    // selectedPrefix ?? fallbackPrefix
-    isDevEnv ? "development" : selectedPrefix ?? fallbackPrefix
-  );
+  const apiEndpoint = await getApiPrefix(selectedPrefix ?? fallbackPrefix);
 
   return `${apiEndpoint}${apiNamespace}`;
 }
