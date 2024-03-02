@@ -3,13 +3,17 @@ import { USER_API_PREFIX_KEY, JWT_TOKEN_KEY } from "../constants/api.constants";
 
 export type ApiPrefixName = "digitalOcean" | "githubPages" | "localhost" | "customUrl";
 export const githubPagesEndpoint = "https://carbonfive.github.io/open-hems-app";
-export const defaultEndpoint = "https://open-hems.uc.r.appspot.com";
-// export const defaultEndpoint = "http://192.168.100.99:5000";
+export const devEndpoint = "https://open-hems.uc.r.appspot.com"; // dev
+export const prodEndpoint = "http://192.168.100.99:5000"; // prod
 // export const defaultEndpoint = "http://100.121.132.110:5000";
 
 export const apiNamespace = "/api/v1";
+export const isDevEnv = !process.env.NODE_ENV || process.env.NODE_ENV === "development";
 
 async function getApiPrefix(key: string | null): Promise<string | null> {
+  if (isDevEnv) {
+    return devEndpoint;
+  }
   switch (key) {
     case "githubPages":
       return githubPagesEndpoint;
@@ -19,7 +23,7 @@ async function getApiPrefix(key: string | null): Promise<string | null> {
     case "customUrl":
       return await AsyncStorage.getItem(key);
     default:
-      return defaultEndpoint;
+      return prodEndpoint;
   }
 }
 
@@ -43,8 +47,8 @@ export async function setJwt(jwt: string) {
 export async function getWelcomeDismissed() {
   const welcomeDismissed = await AsyncStorage.getItem("welcomeDismissed");
   console.log("getWelcomeDismissed", welcomeDismissed);
-  console.log("welcomeDismissedBoolean", (welcomeDismissed === "true"));
-  return (welcomeDismissed) === "true";
+  console.log("welcomeDismissedBoolean", welcomeDismissed === "true");
+  return welcomeDismissed === "true";
 }
 
 export async function setWelcomeDismissed(welcomeDismissed: boolean) {
