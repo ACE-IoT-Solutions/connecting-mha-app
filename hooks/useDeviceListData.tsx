@@ -8,6 +8,14 @@ export function useDeviceListData() {
   const [loading, setLoading] = useState<boolean>(false);
 
   async function getData() {
+    const timeout = 8000;
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    const timeoutId = setTimeout(() => {
+      controller.abort();
+    }, timeout);
+
     try {
       setError(false);
       setLoading(true);
@@ -18,7 +26,10 @@ export function useDeviceListData() {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
+        signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (response.status !== 200) {
         throw new Error(`Status ${response.status}`);
