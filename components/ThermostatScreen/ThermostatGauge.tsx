@@ -105,12 +105,14 @@ export const ThermostatGauge = ({
         break;
     }
   };
-  const calculateOffset = (setPoint: number, type: string, drStatus: DemandResponseStatus) => {
-    var calculatedOffset = 0;
-    var offset = 2;
-    if (drStatus === "curtailed" || drStatus === "heightened") {
-      offset = offset + 1;
+  const calculateOffset = (setPoint: number, type: string, drStatus: DemandResponseStatus, mode?: string) => {
+    console.log({ mode });
+    let calculatedOffset = 0;
+    let offset = 2;
+    if (drStatus === "curtailed" || drStatus === "heightened" || mode === "eco") {
+      offset += 1;
     }
+    console.log({ offset });
 
     if (type === "heat") {
       calculatedOffset = toNumber(getLocalTemperature(setPoint)) - offset;
@@ -140,7 +142,7 @@ export const ThermostatGauge = ({
             &deg;
           </Text>
         </View>
-        {mode === "auto" ? (
+        {mode === "auto" || mode === "eco" ? (
           <View style={{ flexDirection: "row", display: "flex" }}>
             <View style={styles.setpointContainer}>
               <Text style={[styles.setpointLabel, disabled && styles.disabled]} allowFontScaling={false}>
@@ -148,7 +150,7 @@ export const ThermostatGauge = ({
               </Text>
               <View style={styles.tempContainer}>
                 <Text style={[styles.setpoint, disabled && styles.disabled]} allowFontScaling={false}>
-                  {calculateOffset(setPoint, "cool", drStatus)}
+                  {calculateOffset(setPoint, "cool", drStatus, mode)}
                 </Text>
                 <Text style={styles.setpointdegree} allowFontScaling={false}>
                   &deg;
@@ -161,7 +163,7 @@ export const ThermostatGauge = ({
               </Text>
               <View style={styles.tempContainer}>
                 <Text style={[styles.setpoint, disabled && styles.disabled]} allowFontScaling={false}>
-                  {calculateOffset(setPoint, "heat", drStatus)}
+                  {calculateOffset(setPoint, "heat", drStatus, mode)}
                 </Text>
                 <Text style={styles.setpointdegree} allowFontScaling={false}>
                   &deg;

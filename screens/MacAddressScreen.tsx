@@ -14,9 +14,7 @@ import { get } from "lodash";
 
 // export const DEFAULT_MAC_ADDRESS = "8034283b1d67";
 export const DEFAULT_MAC_ADDRESS = "001122334455";
-  // const [macAddress, setMacAddress] = useState<string>("001122334455");
-
-
+// const [macAddress, setMacAddress] = useState<string>("001122334455");
 
 export function MacAddressScreen() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -83,16 +81,12 @@ export function MacAddressScreen() {
     setIsModalVisible(!isModalVisible);
   }
 
-  function componentWillMount() {
-    setMacAddress
-  }
-
   function ErrorModal() {
     return (
       <Modal transparent={true} visible={isModalVisible}>
         <View style={styles.errorModal}>
           <View style={styles.errorContainer}>
-            <Text style={styles.errorMessage} >{modalText}</Text>
+            <Text style={styles.errorMessage}>{modalText}</Text>
             <Button style={styles.errorButton} label="Try Again" onPress={toggleModal} />
           </View>
         </View>
@@ -120,6 +114,13 @@ export function MacAddressScreen() {
             options={{ mask: "SS:SS:SS:SS:SS:SS" }}
             onChangeText={(newMacAddress) => setMacAddress(newMacAddress.replace(/[^a-zA-Z\d]+/g, "").toLowerCase())}
             maxLength={17}
+            // selectTextOnFocus
+            onFocus={(e) =>
+              // Workaround for selectTextOnFocus={true} not working in latest React version
+              e.currentTarget.setNativeProps({
+                selection: { start: 0, end: 17 },
+              })
+            }
           />
         </View>
         <Button label="Verify" style={styles.verifyButton} onPress={verify} />
