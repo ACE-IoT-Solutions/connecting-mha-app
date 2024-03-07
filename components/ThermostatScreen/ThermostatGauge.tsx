@@ -106,13 +106,11 @@ export const ThermostatGauge = ({
     }
   };
   const calculateOffset = (setPoint: number, type: string, drStatus: DemandResponseStatus, mode?: string) => {
-    console.log({ mode });
     let calculatedOffset = 0;
     let offset = 2;
     if (drStatus === "curtailed" || drStatus === "heightened" || mode === "eco") {
       offset += 1;
     }
-    console.log({ offset });
 
     if (type === "heat") {
       calculatedOffset = toNumber(getLocalTemperature(setPoint)) - offset;
