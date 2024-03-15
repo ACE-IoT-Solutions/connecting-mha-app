@@ -1,3 +1,5 @@
+CarChargerScreen;
+
 import React, { useCallback, useEffect, useState } from "react";
 import {
   StyleSheet,
@@ -148,7 +150,7 @@ export function CarChargerScreen() {
           </SafeAreaView>
         )}
         <OptOutModal
-          message="This setting adds a burden on the system and could negatively impact the environment."
+          message="Adjusting your charge rate will opt you out of today’s Smart Energy Day."
           visible={modalVisible}
           onPressGoBack={cancelModal}
           onPressConfirm={confirmModal}
