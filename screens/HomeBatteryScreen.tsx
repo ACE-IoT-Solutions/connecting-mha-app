@@ -164,7 +164,7 @@ export function HomeBatteryScreen() {
           </SafeAreaView>
         )}
         <OptOutModal
-          message="Charging at this rate adds a burden on the system and could negatively impact the environment."
+          message="Adjusting your reserve limit will opt you out of today’s Smart Energy Day."
           visible={modalVisible}
           onPressGoBack={cancelModal}
           onPressConfirm={confirmModal}

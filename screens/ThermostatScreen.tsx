@@ -221,7 +221,7 @@ export function ThermostatScreen() {
           </SafeAreaView>
         )}
         <OptOutModal
-          message="This Thermostat setting adds a burden on the system and could negatively impact the environment."
+          message="Adjusting your thermostat will opt you out of today’s Smart Energy Day."
           visible={modalVisible}
           onPressGoBack={cancelModal}
           onPressConfirm={confirmModal}
