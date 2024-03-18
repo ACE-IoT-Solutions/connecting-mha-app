@@ -43,7 +43,7 @@ export function PowerUsageGraph({ data: rawData }: PowerGraphProps) {
                 opacity: 0.15,
                 dashArray: [],
               },
-              dx: chartWidth - 85,
+              dx: chartWidth - 87,
             },
 
             grid: { visible: false },
@@ -53,7 +53,7 @@ export function PowerUsageGraph({ data: rawData }: PowerGraphProps) {
               visible: true,
               label: {
                 ...typography.label,
-                dx: chartWidth - 75,
+                dx: chartWidth - 84,
                 dy: 0,
                 textAnchor: "start",
               },
