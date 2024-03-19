@@ -2,7 +2,7 @@
   "expo": {
     "name": "Connecting MHA",
     "slug": "connecting-mha-app",
-    "version": "0.0.32",
+    "version": "0.0.34",
     "orientation": "portrait",
     "owner": "ace-iot",
     "icon": "./assets/icon.png",
@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.aceiotsolutions.connecting-mha-app",
-      "buildNumber": "0.0.32",
+      "buildNumber": "0.0.34",
       "config": {
         "usesNonExemptEncryption": false
       }
@@ -29,7 +29,7 @@
         "foregroundImage": "./assets/icon.adaptive.foreground.png",
         "backgroundImage": "./assets/icon.adaptive.background.png"
       },
-      "versionCode": 32,
+      "versionCode": 34,
       "package": "com.aceiotsolutions.connecting_mha_app"
     },
     "web": {
