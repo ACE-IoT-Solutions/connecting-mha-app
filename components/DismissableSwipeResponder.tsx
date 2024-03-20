@@ -55,7 +55,7 @@ export function DismissableSwipeResponder({ children }: { children: React.ReactN
       if (translationY < -200) {
         try {
           const url = await getApiEndpoint();
-          const endpoint = "/swaggesdfr.jsonsdfd";
+          const endpoint = "/swagger.json";
           const response = await fetch(url + endpoint, {
             method: "GET",
             headers: {

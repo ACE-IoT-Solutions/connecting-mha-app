@@ -2,7 +2,7 @@
   "expo": {
     "name": "Connecting MHA",
     "slug": "connecting-mha-app",
-    "version": "0.0.34",
+    "version": "0.0.35",
     "orientation": "portrait",
     "owner": "ace-iot",
     "icon": "./assets/icon.png",
@@ -19,9 +19,12 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.aceiotsolutions.connecting-mha-app",
-      "buildNumber": "0.0.34",
+      "buildNumber": "0.0.35",
       "config": {
         "usesNonExemptEncryption": false
+      },
+      "infoPlist": {
+        "NSLocalNetworkUsageDescription": "This app will connect to the local gateway."
       }
     },
     "android": {
@@ -29,8 +32,13 @@
         "foregroundImage": "./assets/icon.adaptive.foreground.png",
         "backgroundImage": "./assets/icon.adaptive.background.png"
       },
-      "versionCode": 34,
-      "package": "com.aceiotsolutions.connecting_mha_app"
+      "versionCode": 35,
+      "package": "com.aceiotsolutions.connecting_mha_app",
+      "permissions": [
+        "android.permission.NEARBY_WIFI_DEVICES",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_NETWORK_STATE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
