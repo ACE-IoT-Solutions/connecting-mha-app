@@ -2,7 +2,7 @@
   "expo": {
     "name": "Connecting MHA",
     "slug": "connecting-mha-app",
-    "version": "0.0.37",
+    "version": "0.0.39",
     "orientation": "portrait",
     "owner": "ace-iot",
     "icon": "./assets/icon.png",
@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.aceiotsolutions.connecting-mha-app",
-      "buildNumber": "0.0.37",
+      "buildNumber": "0.0.39",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -32,7 +32,7 @@
         "foregroundImage": "./assets/icon.adaptive.foreground.png",
         "backgroundImage": "./assets/icon.adaptive.background.png"
       },
-      "versionCode": 37,
+      "versionCode": 39,
       "package": "com.aceiotsolutions.connecting_mha_app",
       "permissions": [
         "android.permission.NEARBY_WIFI_DEVICES",
@@ -41,6 +41,7 @@
         "android.permission.INTERNET"
       ]
     },
+
     "web": {
       "favicon": "./assets/favicon.png"
     },
@@ -49,6 +50,17 @@
         "projectId": "b4debb26-532a-47f3-8a70-aaac03231111"
       }
     },
-    "plugins": ["expo-localization", "expo-font"]
+    "plugins": [
+      "expo-localization",
+      "expo-font",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ]
   }
 }
