@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+    paddingTop: "10%",
   },
   svgContainer: {
     flex: 1,
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 5.5,
-    paddingHorizontal: 40,
+    paddingHorizontal: 36,
     paddingVertical: 25,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

@@ -1,8 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Platform } from "react-native";
 import { theme, typography } from "../theme";
 import User from "../assets/svg/user.svg";
 import { TouchableOpacity } from "react-native-gesture-handler";
+
+const isAndroid = Platform.OS === "android";
 
 type DeviceHeaderProps = {
   deviceName: string;
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: theme.padding,
+    marginTop: isAndroid ? "10%" : theme.padding,
     paddingHorizontal: theme.padding,
   },
   deviceNameLabel: {
