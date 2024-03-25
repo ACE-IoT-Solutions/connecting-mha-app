@@ -151,18 +151,16 @@ const styles = StyleSheet.create({
   textContainer: {
     flexDirection: "column",
     maxHeight: 150,
-    maxWidth: 210,
+    maxWidth: 230,
     marginBottom: 10,
   },
   labelTextContainer: {
     flex: 1,
     height: 150,
-    width: 210,
     marginBottom: 10,
   },
   labelText: {
     fontSize: 17,
-    lineHeight: 23,
   },
   inputText: {
     flex: 1,
@@ -173,7 +171,7 @@ const styles = StyleSheet.create({
   },
   verifyButton: {
     height: 50,
-    width: 210,
+    width: 230,
     marginVertical: 10,
     borderRadius: 30,
   },
