@@ -22,7 +22,7 @@ yarn run ios
 eas build --platform ios --local
 ```
 
-#### Run App Locally or through EAS
+#### Run App Locally
 ```
 yarn start
 ```
