@@ -1,5 +1,8 @@
 # Open HEMS App
-A React Native app demonstrating HEMS API interactions.
+A React Native app demonstrating HEMS API interactions featuring a user-friendly thermostat and other tools with eco-friendly suggestions.
+
+![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-08 at 15 24 47](https://github.com/ACE-IoT-Solutions/connecting-mha-app/assets/94999450/6df0f135-33c1-4c9c-a2cb-7ffddfb56a3a)
+
 
 ## Getting Started
 #### Install Dependencies
@@ -7,7 +10,7 @@ A React Native app demonstrating HEMS API interactions.
 yarn
 ```
 
-#### Build App Locally
+#### Build App Locally or through EAS
 Android:
 ```
 yarn run android
@@ -19,7 +22,7 @@ yarn run ios
 eas build --platform ios --local
 ```
 
-#### Run App Locally
+#### Run App Locally or through EAS
 ```
 yarn start
 ```
